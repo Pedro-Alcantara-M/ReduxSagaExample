@@ -8,8 +8,10 @@
 ### Tela de Login:
 Para efetuar o login com sucesso digite:
 
+```sh
 usuário: admin
 senha: admin
+```
 
 ### Pagina Home e Edit:
 A nível de comparação, foi criado duas telas para visualizar que o estado esta atualizando de forma global no aplicativo.
