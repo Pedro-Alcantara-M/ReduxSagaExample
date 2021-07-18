@@ -15,7 +15,7 @@ const useStyles = makeStyles(() =>
       flexGrow: 1,
       background: '#eceaea',
       height: '100%',
-      minHeight: '81vh',
+      minHeight: '83vh',
     },
   }),
 );

@@ -24,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 export default function UserTable(props) {
   const classes = useStyles();
 
-
-
   return (
     <TableContainer className={classes.root} component={Paper}>
       <Table className={classes.table} aria-label="simple table">

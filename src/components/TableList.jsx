@@ -31,7 +31,6 @@ export default function TableList(props) {
     }
   }
 
-
   return (
     <>
       <TableRow key={props.id}>

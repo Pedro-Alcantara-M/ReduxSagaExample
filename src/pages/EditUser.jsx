@@ -8,8 +8,6 @@ import { Button } from '@material-ui/core';
 import Forms from '../components/Forms'
 import { useEffect } from 'react';
 
-
-
 const useStyles = makeStyles((theme) => ({
   body: {
     position: 'absolute',
@@ -51,23 +49,26 @@ export default function EditUser(props) {
   const history = useHistory()
   const { id } = useParams()
   const users = useSelector(state => state.users.users)
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [age, setAge] = useState()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [age, setAge] = useState('')
 
   const handleUpdate = () => {
-    if (window.confirm('Deseja alterar os dados?')){
+    if (name === '' || email === '') {
+      alert('Os campos nome e email são obrigatórios.')
+    } else {
+    if (window.confirm('Deseja alterar os dados?')) {
       dispatch(updateUsers({
         id: id,
         name: name,
         email: email,
         age: age
       }))
+      history.push('/edit')
     }
-    
-    history.push('/edit')
   }
-  
+  }
+
 
   const handleClose = () => {
     history.push('/edit')
@@ -75,13 +76,15 @@ export default function EditUser(props) {
 
 
   useEffect(() => {
-    const filterUser =  users.filter((user) => user.id == (id))
+    // eslint-disable-next-line eqeqeq
+    const filterUser = users.filter((user) => user.id == (id))
     filterUser.forEach((e) => {
       setName(e.name)
       setEmail(e.email)
       setAge(e.age)
     })
-  }, [ id, users])
+    console.log(filterUser)
+  }, [id, users])
 
 
   return (

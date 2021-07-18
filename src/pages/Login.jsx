@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Paper, TextField } from '@material-ui/core';
@@ -37,7 +37,7 @@ export default function Login() {
   const [userPassword, setUserPassword] = useState('')
 
   const handleLogin = () => {
-    if(user === 'admin' && userPassword === 'admin'){
+    if (user === 'admin' && userPassword === 'admin') {
       localStorage.setItem('token', '654321');
       history.push('/')
 
@@ -49,9 +49,8 @@ export default function Login() {
   useEffect(() => {
     if (token === '654321') {
       history.push('/')
-    } 
+    }
   }, [history, token])
-
 
   return (
     <div >

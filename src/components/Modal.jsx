@@ -1,10 +1,6 @@
-import React, {useState} from 'react';
-import { useSelector, useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Button } from '@material-ui/core';
 import Forms from './Forms'
-
-
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -44,8 +40,6 @@ const useStyles = makeStyles((theme) => ({
 export default function FormModal(props) {
   const classes = useStyles();
 
-  
-
   return (
     <div >
       <Modal
@@ -54,7 +48,7 @@ export default function FormModal(props) {
         aria-describedby="simple-modal-description"
       >
         <div className={classes.body}>
-         {props.id? <span>{props.id}</span> : <span>SEM ID</span>}
+          {props.id ? <span>{props.id}</span> : <span>SEM ID</span>}
           <Forms
             onClick={props.updateClick}
             name={props.nameUpdate}

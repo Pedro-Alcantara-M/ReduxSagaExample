@@ -1,19 +1,35 @@
-import { getUsers } from 'redux/actions/users'
-import { all, call, put, takeEvery } from 'redux-saga/effects'
+import { put, takeEvery } from 'redux-saga/effects'
 
-import database from 'database'
-
-function* getListRequest() {
-  const users = yield call(database.getAll)
-  //yield put (actions.getAll(users))
+function* setUsers(users) {
+  yield put({ type: 'SET_USERS_STATE', payload: users })
 }
 
-function* watchRequestGetList() {
-  // yield takeLatest(ACTIONS.USER.REQUEST_GET_ALL, getListRequest)
+function* addUsers(users) {
+  yield ({ type: 'ADD_USERS_STATE', payload: users })
 }
 
-function* userSagas() {
-  yield all([watchRequestGetList()])
+function* removeUsers(users) {
+  yield put({ type: 'REMOVE_USERS_STATE', payload: users })
 }
 
-export { userSagas }
+function* updateUsers(users) {
+  yield put({ type: 'UPDATE_USERS_STATE', payload: users })
+}
+
+
+export function* watchSetUsers() {
+  yield takeEvery('SET_USERS', setUsers)
+}
+
+export function* watchAddUsers() {
+  yield takeEvery('ADD_USERS', addUsers)
+}
+
+export function* watchRemoveUsers() {
+  yield takeEvery('REMOVE_USERS', removeUsers)
+}
+
+export function* watchUpdateUsers() {
+  yield takeEvery('UPDATE', updateUsers)
+}
+

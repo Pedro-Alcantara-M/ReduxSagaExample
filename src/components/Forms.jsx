@@ -36,15 +36,16 @@ export default function UserForms(props) {
         value={props.name}
         onChange={props.changeName}
         label="Nome"
-        id="outlined-size-normal"
+        id="input-name"
         variant="outlined"
       />
       <TextField
         className={classes.textField}
         value={props.email}
         onChange={props.changeEmail}
+        type="email"
         label="Email"
-        id="outlined-size-normal"
+        id="input-email"
         variant="outlined"
       />
       <TextField
@@ -52,7 +53,7 @@ export default function UserForms(props) {
         value={props.age}
         onChange={props.changeAge}
         label="idade"
-        id="outlined-size-normal"
+        id="input-age"
         variant="outlined"
       />
       <Button
@@ -65,7 +66,7 @@ export default function UserForms(props) {
         ?
         <AddIcon />
         :
-        <span>Editar</span>
+        <span>Salvar</span>
       }
       </Button>
 

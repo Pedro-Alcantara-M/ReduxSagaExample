@@ -68,8 +68,6 @@ export default function Navbar() {
     localStorage.removeItem('token')
     history.push('/login')
   }
-  
-
 
   return (
     <div >

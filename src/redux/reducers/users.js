@@ -4,10 +4,10 @@ const initialState = {
 
 export default function users(state = initialState, action) {
   switch (action.type) {
-    case 'SET_USERS':
+    case 'SET_USERS_STATE':
       return { ...state, users: action.payload }
 
-    case 'ADD_USERS':
+    case 'ADD_USERS_STATE':
       return {
         ...state, users: [...state.users,
         {
@@ -19,12 +19,13 @@ export default function users(state = initialState, action) {
         ]
       }
 
-    case 'REMOVE_USERS':
+    case 'REMOVE_USERS_STATE':
       state.users = state.users.filter(({ id }) => id !== action.payload)
       return state
 
-    case 'UPDATE_USERS':
+    case 'UPDATE_USERS_STATE':
       state.users.forEach((user) => {
+        // eslint-disable-next-line eqeqeq
         if (user.id == action.payload.id) {
           user.id = action.payload.id;
           user.name = action.payload.name;

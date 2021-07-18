@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  getUsers,
+  setUsers,
   addUsers,
 } from '../redux/actions/users';
 import { useHistory } from "react-router-dom";
-import nextId from "react-id-generator";
 import { makeStyles } from '@material-ui/core/styles';
+import nextId from "react-id-generator";
 import Table from '../components/Table'
 import Forms from '../components/Forms'
 import usersDB from '../database'
@@ -21,20 +21,20 @@ export default function Home(props) {
   const classes = useStyles();
   const history = useHistory()
   const dispatch = useDispatch()
-  const userid = nextId()
+  const userId =  nextId()
   const users = useSelector(state => state.users.users)
   const token = localStorage.getItem('token')
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [age, setAge] = useState()
-
-
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [age, setAge] = useState('')
 
   const handleAddClick = () => {
-    if (name !== null && email !== null && age !== null) {
+    if (name === '' || email === '') {
+      alert('Os campos nome e email são obrigatórios.')
+    } else {
       dispatch(addUsers({
         ...users,
-        id: userid,
+        id: userId,
         name: name,
         email: email,
         age: age
@@ -45,19 +45,17 @@ export default function Home(props) {
     }
   }
 
-  
-
   useEffect(() => {
     if (token === '654321') {
       if (users.length > 0) {
         return users
       } else {
-        dispatch(getUsers(usersDB))
+        dispatch(setUsers(usersDB))
       }
     } else {
       history.push('/login')
     }
-  }, [history, token, users])
+  }, [dispatch, history, token, users])
 
   return (
     <div className={classes.root}>
