@@ -57,23 +57,21 @@ export default function EditUser(props) {
     if (name === '' || email === '') {
       alert('Os campos nome e email são obrigatórios.')
     } else {
-    if (window.confirm('Deseja alterar os dados?')) {
-      dispatch(updateUsers({
-        id: id,
-        name: name,
-        email: email,
-        age: age
-      }))
-      history.push('/edit')
+      if (window.confirm('Deseja alterar os dados?')) {
+        dispatch(updateUsers({
+          id: id,
+          name: name,
+          email: email,
+          age: age
+        }))
+        history.push('/edit')
+      }
     }
   }
-  }
-
 
   const handleClose = () => {
     history.push('/edit')
   }
-
 
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
@@ -83,9 +81,7 @@ export default function EditUser(props) {
       setEmail(e.email)
       setAge(e.age)
     })
-    console.log(filterUser)
   }, [id, users])
-
 
   return (
     <div >
